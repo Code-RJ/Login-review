@@ -1,0 +1,34 @@
+##  Front end GUI starts here.
+#
+#
+##  Login
+#
+#
+# GUI SETUP 
+
+# Main login window
+app = App(title="McDonald's Customer Reviews", width=450, height=500, bg="lightgreen")
+
+Text(app, text="Welcome to Mcdonalds, please log in below.", size=15, color="black")
+login_box = Box(app, layout="grid")
+Text(login_box, text="Username:", grid=[0,0])
+Login_user = TextBox(login_box, width=25, grid=[1,0])
+Text(login_box, text="Password:", grid=[0,1])
+Login_Pword = TextBox(login_box, width=25, hide_text=True, grid=[1,1])
+
+
+Text(app, text="     ")
+PushButton(app, text="Login", command=login_user)
+PushButton(app, text="Sign Up", command=signup_window)
+PushButton(app, text="Change Password", command=open_update_password)
+
+Text(app, text="     ")
+accept_cookies = CheckBox(
+    app,
+    text="I accept the use of cookies")
+
+# Dark mode button
+dark_mode_button = PushButton(
+    app,
+    text="🌙 Dark Mode",
+    command=toggle_dark_mode)
