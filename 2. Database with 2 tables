@@ -1,0 +1,32 @@
+# Database file
+db = "customer_reviews.db"
+
+# Recreate the datavase each time the program runs
+
+if os.path.exists(db):
+        os.remove(db)
+conn = sqlite3.connect(db)
+cursor = conn.cursor()
+
+# Create customer and reviews table
+sql = """
+CREATE TABLE IF NOT EXISTS customer (
+    userID INTEGER PRIMARY KEY AUTOINCREMENT,
+    username TEXT UNIQUE NOT NULL,
+    password TEXT NOT NULL,
+    first_name TEXT NOT NULL,
+    surname TEXT NOT NULL,
+    email TEXT UNIQUE NOT NULL
+);
+CREATE TABLE IF NOT EXISTS reviews (
+    reviewID INTEGER PRIMARY KEY AUTOINCREMENT,
+    review_text TEXT NOT NULL,
+    review_stars INTEGER NOT NULL,
+    userID INTEGER NOT NULL,
+    FOREIGN KEY (userID) REFERENCES customer(userID)
+);
+
+INSERT INTO customer (username, password, first_name, surname, email) VALUES ("RJOsuji", "pw1", "RJ", "Osuji", "rjosuji@gmail.com")
+"""
+cursor.executescript(sql)
+conn.commit()
