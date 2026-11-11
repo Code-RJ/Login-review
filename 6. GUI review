@@ -1,0 +1,50 @@
+#  Review window
+#
+Review_win = Window(app, title="Leave a review", visible=False)
+Review_win.bg = "#E1BEE7"
+reviewGridTop = Box(Review_win, layout="grid", width="fill", height=50)
+review_exit_box = Box(Review_win, width='fill',align='top')
+review_top_image = Picture(review_exit_box, align='right', image = '6106062.png')
+backButton = PushButton(reviewGridTop, text="Back", command=back_action, width=4, height=1, align="left", grid=[0,0])
+Text(Review_win, text="Leave a Review!", size=14, color="navy")
+Text(Review_win, text="        ")
+
+review_txt = TextBox(Review_win, multiline=True, width=40, height=15)
+
+# Create the clickable star rating
+stars_grid = Box(Review_win, layout="grid", width="fill")
+rating_txt = Text(stars_grid, text="                     Rating:              ", grid=[0,0])
+
+star1 = Text(stars_grid, text="★", grid=[1,0])
+star2 = Text(stars_grid, text="★", grid=[2,0])
+star3 = Text(stars_grid, text="★", grid=[3,0])
+star4 = Text(stars_grid, text="★", grid=[4,0])
+star5 = Text(stars_grid, text="★", grid=[5,0])
+
+star1.colour = "black"
+star2.colour = "black"
+star3.colour = "black"
+star4.colour = "black"
+star5.colour = "black"
+
+# Connect each star to its click function
+star1.when_clicked = starclick1
+star2.when_clicked = starclick2
+star3.when_clicked = starclick3
+star4.when_clicked = starclick4
+star5.when_clicked = starclick5
+
+submit_button = PushButton(Review_win, text="Submit Review", width=16, height=2, command=submit_review)
+
+submit_button = PushButton(
+    Review_win,
+    text="Submit Review",
+    width=16,
+    height=2,
+    command=submit_review
+)
+
+
+# Start the GUI
+
+app.display()
