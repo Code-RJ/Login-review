@@ -1,0 +1,16 @@
+#######################################################################################################
+# PROGRAM NAME: McDonald's Customer Review System
+# PROGRAMER | RJ Osuji
+# PURPOSE: Allows customers to create accounts, log in and submit reviews with a 1–5 star rating.
+# DATABASE: SQLite database used to store customer details and reviews.
+# FEATURES: Login, Sign Up, Change Password, Reviews, Star Rating and Dark Mode.
+# VERSION: 1.0
+#######################################################################################################
+
+
+from signal import Signals # Used for signal handling
+from token import STAR # Imports STAR token
+from guizero import App, Text, TextBox, PushButton, Window, Box, info, warn, Picture,CheckBox,bcrypt # GUI imports
+import sqlite3 # Used for the database import
+import os # Used to work with files and folders
+import os.path # Used to check if the database file exists
