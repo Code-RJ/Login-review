@@ -1,0 +1,22 @@
+def login_user():
+    # Procedure to validate login inputs and checks authorise user 
+    global user_LoggedIn # Global variable so that the UserID of the current user logged in can be used elsewhere as a FK
+    if Login_user.value == "":
+        info("Error", "You must enter a valid username") # Checks if username input is empty (presence check)
+    elif Login_Pword.value == "":
+        info("Error", "You must enter a valid password") # 
+    else:
+        
+        query = "SELECT * from customer WHERE username = ? AND password = ?"
+        rows = query_database(db, query, (Login_user.value, Login_Pword.value)) # SQL query to retrieve username and password from database 
+        if len(rows) == 0:
+            info("Error", "Invalid Password Or Username") 
+        elif accept_cookies.value != 1:
+            info("Error", "You must accept cookies :b")
+        else:
+            user_LoggedIn = rows[0][0] # Set UserID to user_LoggedIn variable
+            #open_dashboard()
+	        # output welcome message
+            info("Success", "You are now logged in!")
+
+            Review_win.show()
