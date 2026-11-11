@@ -1,0 +1,14 @@
+def submit_review():
+    # Validate and save the customer's review
+    if not review_txt.value:
+        warn("Missing Info", "Please enter a review.")
+        return
+    if starselected == 0:
+        warn("Missing Info", "Please select a star rating.")
+        return
+    # Insert the review into the database
+    sql = "INSERT INTO reviews (review_text, review_stars, userID) VALUES (?, ?, ?)"
+    execute_sql(db, sql, (review_txt.value, starselected, user_LoggedIn))
+    info("Review Submitted", "Thank you for your review!")
+    Review_win.hide()
+
