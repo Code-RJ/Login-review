@@ -1,0 +1,47 @@
+#  Sign up window starts here
+#
+signup_win = Window(app, title="Sign Up", width=400, height=350, bg="pink", visible=False)
+signupGridTop = Box(signup_win, layout="grid", width=400, height=50)
+backButton = PushButton(signupGridTop, text="Back", command=back_action, width=4, height=1, align="left", grid=[0,0])
+Text(signupGridTop, text="        ", grid=[1,0])
+Text(signupGridTop, text="Let's get you signed up!", size=14, color="navy", grid=[2,0])
+Text(signup_win, text="Username:")
+Signup_user = TextBox(signup_win, width=20)
+Text(signup_win, text="Password:")
+new_pass = TextBox(signup_win, width=20, hide_text=True)
+Text(signup_win, text="Confirm Password:")
+conf_pass = TextBox(signup_win, width=20, hide_text=True)
+Text(signup_win, text="First Name:")
+first_name = TextBox(signup_win, width=20)
+Text(signup_win, text="Surname:")
+surname = TextBox(signup_win, width=20)
+Text(signup_win, text="Email:")
+email = TextBox(signup_win, width=20)
+
+# Terms and Conditions
+terms_accepted = CheckBox(
+    signup_win,
+    text="I agree to the Terms and Conditions"
+)
+
+def show_terms():
+    info(
+        "Terms and Conditions",
+        "By creating an account, you agree to provide correct information, "
+        "keep your password private and use the review system appropriately. "
+        "Offensive or inappropriate reviews should not be submitted."
+    )
+
+Text(
+    signup_win,
+    text="Please agree to the Terms and Conditions before creating an account.",
+    size=9
+)
+show_terms()
+signup_btn = PushButton(signup_win, text="Create Account", command=create_account, width=16, height=2)
+
+
+
+signup_exit_box = Box(signup_win, width='fill',align='top')
+
+
