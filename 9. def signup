@@ -1,0 +1,54 @@
+def create_account():
+    # Check all boxes are filled
+    if not Signup_user.value or not new_pass.value or not conf_pass.value or not first_name.value or not surname.value or not email.value:
+        warn("Missing Info", "Please fill in all fields.")
+        return
+
+    # Check Terms and Conditions
+    if terms_accepted.value != 1:
+        warn("Terms and Conditions", "Please agree to the Terms and Conditions.")
+        return
+
+    # Check username length check
+    if len(Signup_user.value) < 4:
+        warn("Username Too Short", "Username must be at least 4 characters.")
+        return
+
+    # Check password length
+    if len(new_pass.value) < 6:
+        warn("Weak Password", "Password must be at least 6 characters.")
+        return
+
+    # Check passwords match
+    if new_pass.value != conf_pass.value:
+        warn("Password Mismatch", "Passwords do not match.")
+        return
+
+    # Check email format
+    if "@" not in email.value or "." not in email.value:
+        warn("Invalid Email", "Please enter a valid email address.")
+        return
+
+    # Save the new account
+    query = """
+    INSERT INTO customer
+    (username, password, first_name, surname, email)
+    VALUES (?, ?, ?, ?, ?)
+    """
+
+    try:
+        execute_sql(db, query, (
+            Signup_user.value,
+            new_pass.value,
+            first_name.value,
+            surname.value,
+            email.value
+        ))
+
+        info("Sign Up", f"Welcome, {first_name.value}! Your account is ready.")
+
+        signup_win.hide()
+        app.show()
+
+    except sqlite3.IntegrityError:
+        warn("Account Exists", "That username or email is already being used.")
