@@ -1,0 +1,20 @@
+def starclick1():
+    # when star 1 is selected, star 1 lights up
+    global starselected
+    star1.text_color = "gold"
+    star2.text_color = "black"
+    star3.text_color = "black"
+    star4.text_color = "black"
+    star5.text_color = "black"
+    starselected = 1
+
+
+def starclick2():
+    # when star 2 is selected, star 1/2 lights up
+    global starselected
+    star1.text_color = "gold"
+    star2.text_color = "gold"
+    star3.text_color = "black"
+    star4.text_color = "black"
+    star5.text_color = "black"
+    starselected = 2
