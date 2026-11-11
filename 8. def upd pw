@@ -1,0 +1,28 @@
+def update_pw_action():
+    # Make sure all password fields have been completed
+    if not upd_user.value or not upd_old_pw.value or not upd_new_pw.value or not upd_conf_pw.value:
+        warn("Missing Info", "Please fill in all fields.")
+        return
+
+    if upd_new_pw.value != upd_conf_pw.value:
+        warn("Mismatch", "New passwords do not match.")
+    return
+
+# Check username and old password
+    query = "SELECT * FROM customer WHERE username = ? AND password = ?"
+    rows = query_database(db, query, (upd_user.value, upd_old_pw.value))
+
+    if len(rows) == 0:
+        warn("Error", "Username or old password is incorrect.")
+    return
+
+# Change password
+    query = "UPDATE customer SET password = ? WHERE username = ?"
+    execute_sql(db, query, (upd_new_pw.value, upd_user.value))
+
+    info("Success", "Password changed!")
+    update_pw_win.hide()
+
+
+PushButton(update_pw_win, text="Update Password", command=update_pw_action, width=16, height=2)
+PushButton(update_pw_win, text="Cancel", command=update_pw_win.hide, width=16, height=2,)
