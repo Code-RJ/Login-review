@@ -1,0 +1,19 @@
+#Run SELECT queries and return the results
+
+def query_database(db, query, params=()):
+	# Function to query the database
+    with sqlite3.connect(db) as conn:
+        cur = conn.cursor()
+        cur.execute(query, params)
+        rows = cur.fetchall()
+    return rows
+
+# Run INSERT, UPDATE, DELETE queries and return the last row id 
+
+def execute_sql(database, sql_statement, params=()):
+	# Function to execute SQL statements
+    with sqlite3.connect(database) as conn:
+        cur = conn.cursor()
+        cur.execute(sql_statement, params)
+        conn.commit()
+    return cur.lastrowid
