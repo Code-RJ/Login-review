@@ -1,0 +1,31 @@
+# =========================
+# DARK MODE
+# =========================
+
+dark_mode = False
+
+def toggle_dark_mode():
+    global dark_mode
+
+    if dark_mode == False:
+        # Turn DARK mode on
+        app.bg = "#1e1e1e"
+        signup_win.bg = "#1e1e1e"
+        Review_win.bg = "#1e1e1e"
+        app.text_color = "#FFFFFF"
+
+        dark_mode_button.text = "Light Mode"
+
+        dark_mode = True
+
+    else:
+        # Turn LIGHT mode on, also complies with wcag
+        app.bg = "lightgreen"
+        signup_win.bg = "lightgreen"
+        Review_win.bg = "#E1BEE7"
+        app.text_color = "black"
+
+
+        dark_mode_button.text = "Dark Mode"
+
+        dark_mode = False
